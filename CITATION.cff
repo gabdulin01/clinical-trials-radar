@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: Clinical Trials Radar
+message: If you use this software, please cite it using this metadata.
+type: software
+authors:
+  - name: Clinical Trials Radar contributors
+version: 1.0.0
+date-released: 2026-09-07
+license: MIT
+repository-code: https://github.com/YOUR_USERNAME/clinical-trials-radar
