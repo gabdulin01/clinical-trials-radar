@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Поиск и обзор клинических исследований из ClinicalTrials.gov" />
+    <meta name="theme-color" content="#07131f" />
+    <title>Clinical Trials Radar</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#results">К результатам</a>
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Clinical Trials Radar — главная">
+        <span class="radar-mark" aria-hidden="true"><i></i></span>
+        <span>TRIALS<span class="brand-accent">/RADAR</span></span>
+      </a>
+      <div class="source-pill"><span></span> LIVE · CLINICALTRIALS.GOV</div>
+    </header>
+
+    <main>
+      <section class="search-shell" aria-labelledby="page-title">
+        <div class="intro-copy">
+          <p class="eyebrow">RESEARCH INTELLIGENCE</p>
+          <h1 id="page-title">Найдите клинические исследования.<br /><em>Увидьте общую картину.</em></h1>
+          <p class="lede">Открытые данные об исследованиях, географии набора и опубликованных результатах — в одном обзоре.</p>
+        </div>
+
+        <form class="search-form" id="search-form">
+          <label class="field field-wide">
+            <span>Заболевание или тема</span>
+            <input id="condition" name="condition" value="Type 2 diabetes" autocomplete="off" />
+          </label>
+          <label class="field">
+            <span>Страна или город</span>
+            <input id="location" name="location" placeholder="Например, Kazakhstan" autocomplete="off" />
+          </label>
+          <button class="primary-button" type="submit">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"></circle><path d="m16 16 4.25 4.25"></path></svg>
+            Исследовать
+          </button>
+          <div class="quick-searches" aria-label="Быстрый поиск">
+            <span>Популярное:</span>
+            <button type="button" data-query="Breast cancer">Рак груди</button>
+            <button type="button" data-query="Alzheimer disease">Болезнь Альцгеймера</button>
+            <button type="button" data-query="Asthma">Астма</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="dashboard" aria-label="Обзор исследований">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">СВОДКА ПО ЗАПРОСУ</p>
+            <h2 id="query-title">Type 2 diabetes</h2>
+          </div>
+          <p class="updated" id="updated-at">Подключение к источнику данных…</p>
+        </div>
+
+        <div class="metric-grid" id="metric-grid" aria-busy="true">
+          <article class="metric-card metric-primary"><span>Всего исследований</span><strong id="metric-total">—</strong><small>по запросу</small></article>
+          <article class="metric-card"><span>Идёт набор</span><strong id="metric-recruiting">—</strong><small>в загруженной выборке</small></article>
+          <article class="metric-card"><span>Есть результаты</span><strong id="metric-results">—</strong><small>в загруженной выборке</small></article>
+          <article class="metric-card"><span>Страны</span><strong id="metric-countries">—</strong><small>в загруженной выборке</small></article>
+        </div>
+
+        <div class="insight-grid">
+          <article class="panel phase-panel">
+            <div class="panel-title"><div><p class="eyebrow">РАСПРЕДЕЛЕНИЕ</p><h3>Фазы исследований</h3></div><span class="panel-note">загруженные данные</span></div>
+            <div class="phase-chart" id="phase-chart" aria-label="Распределение исследований по фазам"><div class="skeleton-chart" aria-hidden="true"><i></i><i></i><i></i><i></i></div></div>
+          </article>
+          <article class="panel map-panel">
+            <div class="panel-title"><div><p class="eyebrow">ГЕОГРАФИЯ</p><h3>Где проходят исследования</h3></div></div>
+            <div class="map-visual" id="map-visual" aria-label="Распределение исследований по странам"><div class="radar-placeholder" aria-hidden="true"><span></span></div></div>
+          </article>
+        </div>
+
+        <div class="results-heading" id="results">
+          <div><p class="eyebrow">ИССЛЕДОВАНИЯ</p><h2>Последние записи</h2></div>
+          <div class="filter-row" aria-label="Быстрые фильтры">
+            <button class="filter-button active" type="button" data-filter="all">Все</button>
+            <button class="filter-button" type="button" data-filter="recruiting">Идёт набор</button>
+            <button class="filter-button" type="button" data-filter="upcoming">Набор скоро</button>
+            <button class="filter-button" type="button" data-filter="results">С результатами</button>
+            <button class="filter-button" type="button" data-filter="missing-results">Завершены без результатов</button>
+          </div>
+        </div>
+        <div class="list-toolbar">
+          <p id="shown-count">Загрузка…</p>
+          <div class="select-group">
+            <label>Фаза<select id="phase-filter"><option value="all">Все фазы</option><option value="EARLY_PHASE1">Ранняя фаза 1</option><option value="PHASE1">Фаза 1</option><option value="PHASE2">Фаза 2</option><option value="PHASE3">Фаза 3</option><option value="PHASE4">Фаза 4</option><option value="NA">Не применимо</option></select></label>
+            <label>Тип<select id="type-filter"><option value="all">Все типы</option><option value="INTERVENTIONAL">Интервенционные</option><option value="OBSERVATIONAL">Наблюдательные</option><option value="EXPANDED_ACCESS">Расширенный доступ</option></select></label>
+            <label>Сортировка<select id="sort-filter"><option value="updated">Недавно обновлённые</option><option value="enrollment">По размеру набора</option><option value="start">По дате начала</option></select></label>
+          </div>
+        </div>
+        <div class="study-list" id="study-list" aria-live="polite"><div class="loading-card"><span class="loader"></span><p>Загружаем актуальные исследования…</p></div></div>
+        <div class="load-more-wrap"><button id="load-more" class="secondary-button" type="button" hidden>Загрузить ещё</button></div>
+      </section>
+    </main>
+
+    <footer><p>Данные: ClinicalTrials.gov · Обновляются ежедневно · Не является медицинской рекомендацией</p><p><a href="https://clinicaltrials.gov/about-site/terms-conditions" target="_blank" rel="noreferrer">Источник и условия использования</a></p></footer>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
